@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherNow</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>WeatherNow 🌞 </h1>
+            <p>Get real time weather conditions and forecast.</p>
+        </header>
+
+        <div class="search-container">
+            <div class="search-wrapper">
+                <input type="text" id="city" placeholder="Enter city name..." autocomplete="off">
+                <div class="suggestions" id="suggestions"></div>
+            </div>
+            <button onclick="getWeather()">Search</button>
+            <button onclick="detectLocation()" class="location-btn" title="Detect my location">Detect my location 📍</button>
+        </div>
+
+        <div id="searchHistory" class="search-history"></div>
+
+        <div class="weather-container">
+            <section class="current-weather">
+                <div class="icon"></div>
+                <div class="info">
+                    <h2 id="cityName">City</h2>
+                    <p id="temperature">--°C</p>
+                    <p id="description">Description: --</p>
+                    <p id="feelsLike">Feels like: --°C</p>
+                    <p id="lastUpdated" class="last-updated">Last updated: --</p>
+                </div>
+            </section>
+
+            <section class="real-time-info">
+                <div class="info-card">
+                    <h3>Humidity</h3>
+                    <p id="humidity">--%</p>
+                </div>
+                <div class="info-card">
+                    <h3>Wind Speed</h3>
+                    <p id="windSpeed">-- m/s</p>
+                </div>
+                <div class="info-card">
+                    <h3>Pressure</h3>
+                    <p id="pressure">-- hPa</p>
+                </div>
+                <div class="info-card">
+                    <h3>Visibility</h3>
+                    <p id="visibility">-- km</p>
+                </div>
+                <div class="info-card">
+                    <h3>Sunrise</h3>
+                    <p id="sunrise">--:--</p>
+                </div>
+                <div class="info-card">
+                    <h3>Sunset</h3>
+                    <p id="sunset">--:--</p>
+                </div>
+                <div class="info-card">
+                    <h3>AQI</h3>
+                    <p id="aqi">--</p>
+                </div>
+            </section>
+
+            <section class="forecast">
+                <h3>5-Day Forecast</h3>
+                <div class="forecast-grid" id="forecastGrid">                   
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

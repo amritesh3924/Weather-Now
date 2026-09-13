@@ -1,80 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WeatherNow</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#061526">
+  <title>WeatherNow — Atmospheric intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <div class="app-container">
-        <header class="app-header">
-            <h1>WeatherNow 🌤️ </h1>
-            <p>Get real time weather conditions and forecast.</p>
-        </header>
-
-        <div class="search-container">
-            <div class="search-wrapper">
-                <input type="text" id="city" placeholder="Enter city name..." autocomplete="off">
-                <div class="suggestions" id="suggestions"></div>
-            </div>
-            <button onclick="getWeather()">Search</button>
-            <button onclick="detectLocation()" class="location-btn" title="Detect my location">Detect my location 📍</button>
-        </div>
-
-        <div id="searchHistory" class="search-history"></div>
-
-        <div class="weather-container">
-            <section class="current-weather">
-                <div class="icon"></div>
-                <div class="info">
-                    <h2 id="cityName">City</h2>
-                    <p id="temperature">--°C</p>
-                    <p id="description">Description: --</p>
-                    <p id="feelsLike">Feels like: --°C</p>
-                    <p id="lastUpdated" class="last-updated">Last updated: --</p>
-                </div>
-            </section>
-
-            <section class="real-time-info">
-                <div class="info-card">
-                    <h3>Humidity</h3>
-                    <p id="humidity">--%</p>
-                </div>
-                <div class="info-card">
-                    <h3>Wind Speed</h3>
-                    <p id="windSpeed">-- m/s</p>
-                </div>
-                <div class="info-card">
-                    <h3>Pressure</h3>
-                    <p id="pressure">-- hPa</p>
-                </div>
-                <div class="info-card">
-                    <h3>Visibility</h3>
-                    <p id="visibility">-- km</p>
-                </div>
-                <div class="info-card">
-                    <h3>Sunrise</h3>
-                    <p id="sunrise">--:--</p>
-                </div>
-                <div class="info-card">
-                    <h3>Sunset</h3>
-                    <p id="sunset">--:--</p>
-                </div>
-                <div class="info-card">
-                    <h3>AQI</h3>
-                    <p id="aqi">--</p>
-                </div>
-            </section>
-
-            <section class="forecast">
-                <h3>5-Day Forecast</h3>
-                <div class="forecast-grid" id="forecastGrid">                   
-                </div>
-            </section>
-        </div>
+<body class="default">
+  <div class="atmosphere" aria-hidden="true"><div class="atmosphere-glow"></div><div class="sun-rays"></div><div class="cloud cloud-one"></div><div class="cloud cloud-two"></div><div class="cloud cloud-three"></div><div class="rain-field"></div><div class="snow-field"></div><div class="fog-layer fog-one"></div><div class="fog-layer fog-two"></div><div class="lightning"></div><div class="grain"></div></div>
+  <main class="app-container">
+    <nav class="app-header" aria-label="Primary navigation"><a class="brand" href="#top" aria-label="WeatherNow home"><span class="brand-mark"><i></i><i></i><i></i></span><span>Weather<span>Now</span></span></a><p class="nav-status"><span class="pulse"></span> Live atmosphere</p><button class="quiet-button" id="ambientToggle" type="button" aria-pressed="false" title="Toggle ambient motion">◌ <span>Ambient</span></button></nav>
+    <section class="welcome" id="top"><p class="eyebrow">PRECISION WEATHER, SPATIALLY REIMAGINED</p><h1>Feel the <em>atmosphere.</em></h1><p class="welcome-copy">A living view of the conditions around you, built to make every change in the sky tangible.</p></section>
+    <section class="search-dock" aria-label="Search weather"><div class="search-wrapper"><span class="search-icon" aria-hidden="true">⌕</span><input type="text" id="city" placeholder="Search a city" autocomplete="off" aria-label="Search city" aria-controls="suggestions" aria-autocomplete="list"><div class="suggestions" id="suggestions" role="listbox"></div></div><button class="search-button" type="button" onclick="getWeather()"><span>Explore weather</span><b>↗</b></button><button onclick="detectLocation()" class="location-btn" type="button" title="Detect my location"><span class="locate-icon">◎</span><span>Use my location</span></button></section>
+    <section class="recent-wrap" aria-label="Recent locations"><span>Recent</span><div id="searchHistory" class="search-history"></div></section>
+    <div class="weather-container" aria-live="polite">
+      <section class="weather-stage" aria-label="Current weather"><div class="stage-orbit orbit-one"></div><div class="stage-orbit orbit-two"></div><div class="weather-visual" aria-hidden="true"><div class="weather-orb"><div class="orb-core"></div><div class="orb-glow"></div><div class="orb-ring"></div></div><div class="visual-symbol"></div></div><div class="current-weather"><div class="info"><p class="place-label">CURRENT CONDITIONS</p><h2 id="cityName">Find your sky</h2><div class="temperature-line"><p id="temperature">--°</p><span>C</span></div><p id="description">Enter a city to begin</p><p id="feelsLike">Your local atmosphere, visualized.</p><p id="lastUpdated" class="last-updated">Waiting for a location</p></div></div><div class="stage-caption"><span class="compass">N</span><span id="conditionLabel">Atmospheric view</span></div></section>
+      <section class="metrics-section" aria-label="Environmental metrics"><div class="section-heading"><div><p class="eyebrow">LIVE TELEMETRY</p><h3>Environmental readout</h3></div><span>Updated in real time</span></div><div class="real-time-info">
+        <article class="info-card humidity-card"><div class="metric-head"><span>Humidity</span><i>◒</i></div><div class="gauge"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="42"/><circle class="gauge-progress" cx="50" cy="50" r="42"/></svg><p id="humidity">--%</p></div><small>Relative moisture</small></article>
+        <article class="info-card wind-card"><div class="metric-head"><span>Wind</span><i>↝</i></div><p id="windSpeed" class="metric-value">-- m/s</p><div class="wind-lines"><i></i><i></i><i></i></div><small>Surface movement</small></article>
+        <article class="info-card"><div class="metric-head"><span>Pressure</span><i>◉</i></div><p id="pressure" class="metric-value">-- hPa</p><div class="micro-bars"><i></i><i></i><i></i><i></i><i></i></div><small>Atmospheric force</small></article>
+        <article class="info-card"><div class="metric-head"><span>Visibility</span><i>◌</i></div><p id="visibility" class="metric-value">-- km</p><div class="visibility-line"><i></i></div><small>Viewing distance</small></article>
+        <article class="info-card sun-card"><div class="metric-head"><span>Sunrise</span><i>⌒</i></div><p id="sunrise" class="metric-value">--:--</p><div class="sun-path"><i></i></div><small>First light</small></article>
+        <article class="info-card sun-card"><div class="metric-head"><span>Sunset</span><i>⌒</i></div><p id="sunset" class="metric-value">--:--</p><div class="sun-path sunset-path"><i></i></div><small>Golden hour ends</small></article>
+        <article class="info-card aqi-card"><div class="metric-head"><span>US AQI</span><i>✦</i></div><p id="aqi" class="metric-value">--</p><div class="aqi-scale"><i></i><i></i><i></i><i></i><i></i></div><small id="aqiDetail">Calculated from PM2.5</small></article>
+      </div></section>
+      <section class="forecast"><div class="section-heading"><div><p class="eyebrow">LOOKING AHEAD</p><h3>Five day trajectory</h3></div><span>Swipe to explore <b>→</b></span></div><div class="forecast-grid" id="forecastGrid"></div></section>
     </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"><span>✦</span><p id="toastMessage"></p></div><div class="loader" id="loader" aria-live="polite"><div class="loader-orb"><i></i><i></i></div><p>Reading the atmosphere</p></div><script src="script.js"></script>
+</body></html>
